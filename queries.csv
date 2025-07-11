@@ -1,0 +1,148 @@
+name,query,id,parentId,isFolder
+Quant,,0,,true
+set params,":params {
+date: datetime(""2025-06-09T00:00:00Z""),
+window_days: 30
+}",1,0,false
+chain AssetDays,"CYPHER 25
+MATCH (ad:AssetDay)
+ORDER BY ad.date
+WITH ad.asset_id AS id, collect(ad) AS ads
+CALL apoc.nodes.link(ads, 'NEXT')",2,0,false
+project into memory for date,"CYPHER 25
+MATCH (ad:AssetDay {date: $date})
+CALL (ad) {
+MATCH ((prev_days:AssetDay)-[:NEXT]->(:AssetDay)){30}(ad)
+WITH ad, apoc.coll.zip(prev_days, prev_days[1..]+[ad]) AS t_tplus1
+WITH [x IN t_tplus1 | log(x[1].adj_close / x[0].adj_close)] AS log_returns
+RETURN log_returns
+}
+RETURN ad, log_returns
+
+NEXT
+
+RETURN gds.graph.project(
+  'myGraph',
+  ad,
+  null,
+  {
+    sourceNodeProperties: {log_returns: log_returns},
+    targetNodeProperties: {}
+  }
+)",3,0,false
+view slice with correlation,"CYPHER 25
+
+// Deleting in memory graph if exists
+OPTIONAL CALL gds.graph.drop('myGraph', false)
+YIELD graphName
+RETURN 0 AS ok_anyway
+
+NEXT
+
+// Computing log returns float array of last $window_days days
+MATCH (ad:AssetDay {date: $date})
+CALL (ad) {
+MATCH ((prev_days:AssetDay)-[:NEXT]->(:AssetDay)){365}(ad)
+WITH ad, apoc.coll.zip(prev_days[365-$window_days..], prev_days[365-$window_days+1..]+[ad]) AS t_tplus1
+WITH [x IN t_tplus1 | log(x[1].adj_close / x[0].adj_close)] AS log_returns
+RETURN log_returns
+}
+RETURN ad, log_returns
+
+NEXT
+
+// projecting in-memory set of isolated nodes with vector
+RETURN gds.graph.project(
+  'myGraph',
+  ad,
+  null,
+  {
+    sourceNodeProperties: {log_returns: log_returns},
+    targetNodeProperties: {}
+  }
+) AS g
+
+NEXT
+
+// returning virtual knn graph of Pearson correlations as of $date
+CALL gds.knn.stream('myGraph', {
+    topK: 1,
+    nodeProperties: [{log_returns:""PEARSON""}],
+    // The following parameters are set to produce a deterministic result
+    //randomSeed: 1337,
+    //concurrency: 1,
+    concurrency: 6,
+    sampleRate: 1.0,
+    deltaThreshold: 0.0
+})
+YIELD node1, node2, similarity
+WITH gds.util.asNode(node1) AS ad1, gds.util.asNode(node2) AS ad2, similarity
+RETURN ad1, ad2, apoc.create.vRelationship(ad1,'CORRELATES_WITH', {score: similarity}, ad2)
+",4,0,false
+persist all correlations 30 days window,"CYPHER 25
+
+MATCH (ad:AssetDay)
+RETURN DISTINCT ad.date AS date ORDER BY date ASC
+
+NEXT
+
+CALL (date) {
+  // Deleting in memory graph if exists
+  WITH date
+  OPTIONAL CALL gds.graph.drop('graph_' + toString(date), false)
+  YIELD graphName
+  RETURN 0 AS ok_anyway, date
+  
+  NEXT
+  
+  // Computing log returns float array of last 30 days
+  MATCH (ad:AssetDay {date: date})
+  CALL (ad) {
+  MATCH ((prev_days:AssetDay)-[:NEXT]->(:AssetDay)){30}(ad)
+  WITH ad, apoc.coll.zip(prev_days, prev_days[1..]+[ad]) AS t_tplus1
+  WITH [x IN t_tplus1 | log(x[1].adj_close / x[0].adj_close)] AS log_returns
+  RETURN log_returns
+  }
+  RETURN ad, log_returns, date
+  
+  NEXT
+  
+  // projecting in-memory set of isolated nodes with vector
+  RETURN gds.graph.project(
+    'graph_' + toString(date),
+    ad,
+    null,
+    {
+      sourceNodeProperties: {log_returns: log_returns},
+      targetNodeProperties: {}
+    }
+  ) AS g, date
+  
+  NEXT
+  
+  // running virtual knn graph of Pearson correlations as of $date
+  CALL gds.knn.write('graph_' + toString(date), {
+      writeRelationshipType: 'CORRELATES_WITH',
+      writeProperty: 'pearson_correlation_score',
+      topK: 2,
+      nodeProperties: [{log_returns:""PEARSON""}],
+      // The following parameters are set to produce a deterministic result
+      //randomSeed: 1337,
+      //concurrency: 1,
+      concurrency: 1,
+      sampleRate: 1.0,
+      deltaThreshold: 0.0
+  })
+  YIELD nodesCompared, relationshipsWritten
+  RETURN nodesCompared, relationshipsWritten
+
+  NEXT
+
+  OPTIONAL CALL gds.graph.drop('graph_' + toString(date), false)
+  YIELD graphName
+  RETURN nodesCompared, relationshipsWritten
+
+} IN CONCURRENT TRANSACTIONS OF 6 ROWS
+RETURN sum(nodesCompared) AS nodesCompared, sum(relationshipsWritten) AS relationshipsWritten",5,0,false
+clean correlates with,"MATCH ()-[r:CORRELATES_WITH]->()
+CALL (r) {DELETE r} IN TRANSACTIONS OF 1000 ROWS",6,0,false
