@@ -49,8 +49,7 @@ The queries are structured as a tree in the provided CSV (`neo4j_query_saved_cyp
    - **Query**:
      ```cypher
      :params {
-       date: datetime("2025-06-09T00:00:00Z"),
-       window_days: 30
+       date: datetime("2025-06-09T00:00:00Z")
      }
      ```
    - **Explanation**: Sets global parameters for date (as-of-date for snapshots) and window_days (e.g., 30 for correlation window). Used in subsequent queries for flexibility.
