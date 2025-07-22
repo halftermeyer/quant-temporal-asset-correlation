@@ -43,7 +43,7 @@ Data import (not in queries): Use CSV with columns like `asset_id, category, tic
 
 ## Queries and Explanations
 
-The queries are structured as a tree in the provided CSV (`neo4j_query_saved_cypher_2025-7-10 (2).csv`). Below is an explanation of each, including purpose and key Cypher elements. All queries assume APOC and GDS libraries are installed.
+The queries are structured as a tree in the provided CSV (`queries.csv`). Below is an explanation of each, including purpose and key Cypher elements. All queries assume APOC and GDS libraries are installed.
 
 ### 1. **set params**
    - **Query**:
