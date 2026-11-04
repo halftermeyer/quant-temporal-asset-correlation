@@ -1,0 +1,12 @@
+graphdatascience>=2.3      # gds.fast_path (Aura Graph Analytics)
+neo4j>=5.28
+pandas>=2.2
+numpy>=1.26
+yfinance>=0.2.50
+python-dotenv>=1.0
+certifi
+matplotlib
+scikit-learn
+jupyter
+requests             # SEC 13F + OpenFIGI (05_download_13f.py)
+pyarrow              # holdings.parquet

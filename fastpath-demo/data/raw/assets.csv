@@ -1,0 +1,100 @@
+ticker,name,sector,sub_industry
+AAPL,Apple Inc.,Information Technology,"Technology Hardware, Storage & Peripherals"
+MSFT,Microsoft Corporation,Information Technology,Systems Software
+NVDA,NVIDIA Corporation,Information Technology,Semiconductors
+GOOGL,Alphabet Inc.,Communication Services,Interactive Media & Services
+META,"Meta Platforms, Inc.",Communication Services,Interactive Media & Services
+TSLA,"Tesla, Inc.",Consumer Discretionary,Automobile Manufacturers
+ADBE,Adobe Inc.,Information Technology,Application Software
+INTC,Intel Corporation,Information Technology,Semiconductors
+CSCO,"Cisco Systems, Inc.",Information Technology,Communications Equipment
+IBM,International Business Machines Corporation,Information Technology,IT Consulting & Other Services
+ORCL,Oracle Corporation,Information Technology,Application Software
+AMD,"Advanced Micro Devices, Inc.",Information Technology,Semiconductors
+QCOM,QUALCOMM Incorporated,Information Technology,Semiconductors
+AVGO,Broadcom Inc.,Information Technology,Semiconductors
+TXN,Texas Instruments Incorporated,Information Technology,Semiconductors
+MU,"Micron Technology, Inc.",Information Technology,Semiconductors
+ADI,"Analog Devices, Inc.",Information Technology,Semiconductors
+KLAC,KLA Corporation,Information Technology,Semiconductor Materials & Equipment
+LRCX,Lam Research Corporation,Information Technology,Semiconductor Materials & Equipment
+AMAT,"Applied Materials, Inc.",Information Technology,Semiconductor Materials & Equipment
+JPM,JPMorgan Chase & Co.,Financials,Diversified Banks
+BAC,Bank of America Corporation,Financials,Diversified Banks
+WFC,Wells Fargo & Company,Financials,Diversified Banks
+C,Citigroup Inc.,Financials,Diversified Banks
+GS,"The Goldman Sachs Group, Inc.",Financials,Investment Banking & Brokerage
+MS,Morgan Stanley,Financials,Investment Banking & Brokerage
+BLK,"BlackRock, Inc.",Financials,Asset Management & Custody Banks
+SCHW,The Charles Schwab Corporation,Financials,Investment Banking & Brokerage
+AXP,American Express Company,Financials,Consumer Finance
+PNC,"The PNC Financial Services Group, Inc.",Financials,Diversified Banks
+TFC,Truist Financial Corporation,Financials,Diversified Banks
+USB,U.S. Bancorp,Financials,Diversified Banks
+COF,Capital One Financial Corporation,Financials,Consumer Finance
+BK,The Bank of New York Mellon Corporation,Finance,Finance
+STT,State Street Corporation,Financials,Asset Management & Custody Banks
+NTRS,Northern Trust Corporation,Financials,Asset Management & Custody Banks
+ALL,The Allstate Corporation,Financials,Property & Casualty Insurance
+TRV,"The Travelers Companies, Inc.",Financials,Property & Casualty Insurance
+AIG,"American International Group, Inc.",Financials,Multi-line Insurance
+MET,"MetLife, Inc.",Financials,Life & Health Insurance
+XOM,Exxon Mobil Corporation,Energy,Integrated Oil & Gas
+CVX,Chevron Corporation,Energy,Integrated Oil & Gas
+COP,ConocoPhillips,Energy,Oil & Gas Exploration & Production
+EOG,"EOG Resources, Inc.",Energy,Oil & Gas Exploration & Production
+SLB,Schlumberger Limited,Energy,Oil & Gas Equipment & Services
+MPC,Marathon Petroleum Corporation,Energy,Oil & Gas Refining & Marketing
+PSX,Phillips 66,Energy,Oil & Gas Refining & Marketing
+VLO,Valero Energy Corporation,Energy,Oil & Gas Refining & Marketing
+OXY,Occidental Petroleum Corporation,Energy,Oil & Gas Exploration & Production
+KMI,"Kinder Morgan, Inc.",Energy,Oil & Gas Storage & Transportation
+HAL,Halliburton Company,Energy,Oil & Gas Equipment & Services
+BKR,Baker Hughes Company,Energy,Oil & Gas Equipment & Services
+WMB,"The Williams Companies, Inc.",Energy,Oil & Gas Storage & Transportation
+OKE,"ONEOK, Inc.",Energy,Oil & Gas Storage & Transportation
+FANG,"Diamondback Energy, Inc.",Energy,Oil & Gas Exploration & Production
+DVN,Devon Energy Corporation,Energy,Oil & Gas Exploration & Production
+CTRA,Coterra Energy Inc.,Energy,Energy
+APA,APA Corporation,Energy,Oil & Gas Exploration & Production
+HES,Hess Corporation,Energy,Energy
+JNJ,Johnson & Johnson,Health Care,Pharmaceuticals
+PFE,Pfizer Inc.,Health Care,Pharmaceuticals
+LLY,Eli Lilly and Company,Health Care,Pharmaceuticals
+ABT,Abbott Laboratories,Health Care,Health Care Equipment
+MRK,"Merck & Co., Inc.",Health Care,Pharmaceuticals
+TMO,Thermo Fisher Scientific Inc.,Health Care,Life Sciences Tools & Services
+ABBV,AbbVie Inc.,Health Care,Biotechnology
+DHR,Danaher Corporation,Health Care,Life Sciences Tools & Services
+AMGN,Amgen Inc.,Health Care,Biotechnology
+ISRG,"Intuitive Surgical, Inc.",Health Care,Health Care Equipment
+SYK,Stryker Corporation,Health Care,Health Care Equipment
+MDT,Medtronic plc,Health Care,Health Care Equipment
+BSX,Boston Scientific Corporation,Health Care,Health Care Equipment
+VRTX,Vertex Pharmaceuticals Incorporated,Health Care,Biotechnology
+REGN,"Regeneron Pharmaceuticals, Inc.",Health Care,Biotechnology
+CI,The Cigna Group,Health Care,Health Care Services
+CVS,CVS Health Corporation,Health Care,Health Care Services
+UNH,UnitedHealth Group Incorporated,Health Care,Managed Health Care
+ELV,"Elevance Health, Inc.",Health Care,Managed Health Care
+HCA,"HCA Healthcare, Inc.",Health Care,Health Care Facilities
+AMZN,"Amazon.com, Inc.",Consumer Discretionary,Broadline Retail
+HD,"The Home Depot, Inc.",Consumer Discretionary,Home Improvement Retail
+MCD,McDonald's Corporation,Consumer Discretionary,Restaurants
+NKE,"NIKE, Inc.",Consumer Discretionary,"Apparel, Accessories & Luxury Goods"
+SBUX,Starbucks Corporation,Consumer Discretionary,Restaurants
+LOW,"Lowe's Companies, Inc.",Consumer Discretionary,Home Improvement Retail
+TJX,"The TJX Companies, Inc.",Consumer Discretionary,Apparel Retail
+TGT,Target Corporation,Consumer Staples,Consumer Staples Merchandise Retail
+DG,Dollar General Corporation,Consumer Staples,Consumer Staples Merchandise Retail
+DLTR,"Dollar Tree, Inc.",Consumer Staples,Consumer Staples Merchandise Retail
+KO,The Coca-Cola Company,Consumer Staples,Soft Drinks & Non-alcoholic Beverages
+PEP,"PepsiCo, Inc.",Consumer Staples,Soft Drinks & Non-alcoholic Beverages
+PG,The Procter & Gamble Company,Consumer Staples,Personal Care Products
+CL,Colgate-Palmolive Company,Consumer Staples,Household Products
+KMB,Kimberly-Clark Corporation,Consumer Staples,Household Products
+COST,Costco Wholesale Corporation,Consumer Staples,Consumer Staples Merchandise Retail
+WMT,Walmart Inc.,Consumer Staples,Consumer Staples Merchandise Retail
+PM,Philip Morris International Inc.,Consumer Staples,Tobacco
+MO,"Altria Group, Inc.",Consumer Staples,Tobacco
+GIS,"General Mills, Inc.",Consumer Staples,Packaged Foods & Meats
